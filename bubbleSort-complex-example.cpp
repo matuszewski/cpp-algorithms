@@ -36,33 +36,30 @@ int main()
 
     randomizeArray(tab, size);
 
-    cout << "---------------- unsorted: ---------------" << endl;
+    cout << "--- randomized and unsorted --------------" << endl;
     printArray(tab, size);
     cout << "------------------------------------------" << endl;
     cout << endl;
 
     sort(tab, size, larger);
-    cout << "----------- sorted ascending: ------------" << endl;
+    cout << "--- bubble sorted ascending --------------" << endl;
     printArray(tab, size);
     cout << "------------------------------------------" << endl;
     cout << endl;
 
-    if (devideAndConquerSearch(tab, size, x))
-    {
+    cout << "using devide and conquer search algorithm to find x and y";
+    if (devideAndConquerSearch(tab, size, x)) {
         cout << "\tvalue " << x << " is present in an array" << endl;
-    }
-    else
-    {
+    } else {
         cout << "\tvalue " << x << " isn't present in an array" << endl;
     }
-    if (devideAndConquerSearch(tab, size, y))
-    {
+
+    if (devideAndConquerSearch(tab, size, y)) {
         cout << "\tvalue " << y << " is present in an array" << endl;
-    }
-    else
-    {
+    } else {
         cout << "\tvalue " << y << " isn't present in an array" << endl;
     }
+
     cout << endl;
 
     sort(tab, size, smaller);
@@ -78,8 +75,7 @@ int main()
     cout << "------------------------------------------" << endl;
     cout << endl;
 
-    if (linearSearch(tab, size, 8))
-    {
+    if (linearSearch(tab, size, 8)) {
         cout << "value 8 exist in array" << endl;
     }
 
@@ -87,18 +83,16 @@ int main()
     return 0;
 }
 
-void randomizeArray(int *tab, int size)
-{
+void randomizeArray(int *tab, int size) {
     srand(time(NULL)); //generate pseudorandom seed
 
-    for (int i = 0; i < size; i++) // fill the array with random values
-    {
+    // fill the array with random values
+    for (int i = 0; i < size; i++){
         tab[i] = rand() % 100 + 1; // from 1 to 100
     }
 }
 
-void printArray(int *tab, int size)
-{
+void printArray(int *tab, int size) {
     /*  for (int i = 0; i < size; i++)  // printing array indexes
     {
         cout << i << "\t";
@@ -106,38 +100,34 @@ void printArray(int *tab, int size)
     
     cout << endl;
     */
-    for (int i = 0; i < size; i++)
-    {
+
+    for (int i = 0; i < size; i++) {
         cout.width(5);
         cout << tab[i];
     }
+
     cout << endl;
 }
 
-bool larger(int &l, int &r)
-{
+bool larger(int &l, int &r) {
     return l > r;
 }
 
-bool smaller(int &l, int &r)
-{
+bool smaller(int &l, int &r) {
     return l < r;
 }
 
 /* BUBBLE SORT ALGORITHM */
-void sort(int *tab, int size, bool (*f)(int &l, int &r))
-{
+void sort(int *tab, int size, bool (*f)(int &l, int &r)) {
     int Size = size;
     int i;
     int temp;
     bool again;
 
-    do
-    {
+    do {
         again = false;
-
-        for (int i = 0; i < size - 1; i++) // repeat the comparison size-1 times
-        {
+	// repeat the comparison size-1 times
+        for (int i = 0; i < size - 1; i++) {
             if (f(tab[i], tab[i + 1])) // if previous is smaller/larger (depends on f()) than next
             {
                 temp = tab[i];       //
